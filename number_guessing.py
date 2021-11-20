@@ -36,10 +36,6 @@ class Casino:
                 self.player_balance = float(input('RE ENTER YOUR BALANCE  : $'))
                 print('-----------------------------------------------------')
 
-            else:
-                if self.player_balance >= 10:
-                    playsound(os.path.join('sounds/cash.mp3'))
-
         except ValueError:
             while self.player_balance == str():
                 print('ERROR!!. . THE VALUE OF BALANCE SHOULD BE ONLY NUMBERS')
@@ -95,7 +91,7 @@ class Casino:
                     print(
                         f'OOPS GOOD LUCK NEXT TIME. THE RIGHT HIDDEN NUMBER WAS '
                         f'{hidden_number}. AND YOU LOST : ${self.bid_amount}')
-                    playsound(os.path.join('sounds/pay.mp3'))
+                    playsound(os.path.join('sounds/pay2.mp3'))
                     sleep(2)
 
                 if self.player_balance < 10:
