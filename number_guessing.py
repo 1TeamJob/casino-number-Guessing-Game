@@ -54,10 +54,15 @@ class Casino:
             self.game_menu()
             start = input(f'{self.player_name}, ARE YOUR READY TO START THE GAME ( Y | N ? : ')
 
-            if start == 'y' or start == 'Y':
-                self.game_menu()
-                print(f'THE HIDDEN NUMBER FOR TESTING : {hidden_number}')
-                self.bid_amount = float(input('ENTER YOUR BID AMOUNT : $'))
+            if start == 'y' or start == 'Y' or start == 'y-help':
+                if start == 'y-help':
+                    self.game_menu()
+                    print(f'THE HIDDEN NUMBER IS : {hidden_number}')
+                    self.bid_amount = float(input('ENTER YOUR BID AMOUNT : $'))
+
+                else:
+                    self.game_menu()
+                    self.bid_amount = float(input('ENTER YOUR BID AMOUNT : $'))
 
                 while self.bid_amount < 10:
                     self.game_menu()
@@ -80,18 +85,18 @@ class Casino:
                     self.guess = int(input('TRY TO GUESS THE NUMBER BETWEEN 1 - 10 : '))
 
                 if self.guess == hidden_number:
-                    self.game_menu()
                     self.player_balance += self.bid_amount * 7
+                    self.game_menu()
                     print(f'CONGRATULATIONS YOU GUESSED THE NUMBER. AND YOU WON : ${self.bid_amount * 7}')
                     playsound(os.path.join('sounds/cash.mp3'))
 
                 else:
-                    self.game_menu()
                     self.player_balance -= self.bid_amount
+                    self.game_menu()
                     print(
                         f'OOPS GOOD LUCK NEXT TIME. THE RIGHT HIDDEN NUMBER WAS '
                         f'{hidden_number}. AND YOU LOST : ${self.bid_amount}')
-                    playsound(os.path.join('sounds/pay2.mp3'))
+                    playsound(os.path.join('sounds/pay.mp3'))
                     sleep(2)
 
                 if self.player_balance < 10:
